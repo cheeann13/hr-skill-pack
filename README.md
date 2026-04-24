@@ -2,7 +2,7 @@
 
 Open-source AI skills for HR and L&D teams. Each skill is a plain-English instruction set you paste into [Manus](https://manus.im) or any agentic AI. Upload your data, the agent runs the workflow end-to-end. No code required.
 
-Built by [Chee Ann](https://cheeann.com). MIT licensed.
+Built by [Chee Ann](https://cheeann.com) at [Groove Consulting](https://grooveconsulting.org). MIT licensed.
 
 Originally developed for Vspire Academy's HR community session, April 2026. Published publicly so any HR or L&D team can use, fork, or modify it.
 
