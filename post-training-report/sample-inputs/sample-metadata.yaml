@@ -1,0 +1,17 @@
+# Sample training metadata
+# Copy this format for your own trainings
+
+client_name: "Acme Manufacturing Sdn Bhd"
+training_title: "AI for Operations & HR"
+cohort_label: "Cohort 1"
+training_dates: "15 & 16 April 2026"
+venue: "Sunway Resort Hotel, Petaling Jaya"
+duration: "2 days, in-person"
+participant_count: 18
+
+trainer_name: "Jane Tan"
+trainer_title: "Senior L&D Consultant"
+trainer_org: "Independent"
+trainer_credentials: "HRDC-accredited (TTT)"
+
+report_reference: "ACME-C1-APR2026-PTR"

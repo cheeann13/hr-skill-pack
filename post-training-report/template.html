@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{CLIENT_NAME}} | {{TRAINING_TITLE}} | Post-Training Report</title>
+<style>
+  @page { size: A4; margin: 18mm; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #ffffff; color: #222222; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.55; }
+  .page { max-width: 960px; margin: 0 auto; padding: 48px 40px; }
+  header.doc-header { border-bottom: 4px solid #1e3a5f; padding-bottom: 24px; margin-bottom: 36px; }
+  .eyebrow { color: #2c4e7d; font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; }
+  h1 { font-size: 32px; font-weight: 800; color: #1e3a5f; margin: 0 0 6px 0; line-height: 1.2; }
+  .sub { color: #444444; font-size: 15px; margin-top: 6px; }
+  .meta-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 20px; }
+  .meta-cell { border-left: 3px solid #b8860b; padding: 6px 12px; }
+  .meta-label { font-size: 11px; color: #444444; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; }
+  .meta-value { font-size: 15px; color: #222222; margin-top: 2px; }
+  section { margin-bottom: 40px; break-inside: avoid; }
+  h2 { font-size: 22px; color: #1e3a5f; border-bottom: 2px solid #d9cfa7; padding-bottom: 8px; margin-bottom: 16px; }
+  h3 { font-size: 16px; color: #222222; margin: 20px 0 8px 0; font-weight: 700; }
+  p { margin: 0 0 12px 0; color: #222222; }
+  .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 18px 0; }
+  .stat { background: #f7f5f0; border: 1px solid #e3dbc1; border-radius: 8px; padding: 16px; text-align: center; }
+  .stat-num { font-size: 34px; font-weight: 800; color: #1e3a5f; line-height: 1; }
+  .stat-lbl { font-size: 12px; color: #444444; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 6px; font-weight: 700; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 14px; }
+  th { background: #1e3a5f; color: #ffffff; text-align: left; padding: 10px 12px; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; }
+  td { padding: 10px 12px; border-bottom: 1px solid #e3dbc1; color: #222222; vertical-align: top; }
+  tr:nth-child(even) td { background: #f7f5f0; }
+  .callout { background: #f3efe0; border-left: 5px solid #b8860b; padding: 16px 20px; border-radius: 4px; margin: 18px 0; color: #222222; }
+  .callout strong { color: #1e3a5f; }
+  .evidence-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 14px; }
+  .card { background: #ffffff; border: 1px solid #d9cfa7; border-left: 4px solid #2c4e7d; padding: 14px 16px; border-radius: 6px; }
+  .card h4 { margin: 0 0 6px 0; font-size: 14px; color: #1e3a5f; font-weight: 700; }
+  .card p { font-size: 13px; color: #333333; margin: 4px 0; }
+  .card .byline { font-size: 11px; color: #555555; font-style: italic; margin-top: 6px; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .rating-bar { display: flex; align-items: center; gap: 10px; margin: 6px 0; font-size: 13px; }
+  .rating-label { width: 240px; color: #222222; }
+  .bar-track { flex: 1; background: #ece6d0; height: 14px; border-radius: 7px; overflow: hidden; }
+  .bar-fill { background: #2c4e7d; height: 100%; border-radius: 7px; }
+  .rating-num { width: 44px; text-align: right; font-weight: 700; color: #1e3a5f; }
+  footer.doc-footer { border-top: 2px solid #d9cfa7; padding-top: 18px; margin-top: 48px; font-size: 12px; color: #444444; }
+  .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .sig-name { color: #1e3a5f; font-weight: 700; font-size: 14px; }
+  @media print { .page { padding: 0; } section { page-break-inside: avoid; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="doc-header">
+  <div class="eyebrow">Post-Training Report</div>
+  <h1>{{TRAINING_TITLE}}</h1>
+  <div class="sub">{{COHORT_LABEL}} | {{TRAINING_DATES}} | {{VENUE}}</div>
+  <div class="meta-grid">
+    <div class="meta-cell"><div class="meta-label">Client</div><div class="meta-value">{{CLIENT_NAME}}</div></div>
+    <div class="meta-cell"><div class="meta-label">Participants</div><div class="meta-value">{{PARTICIPANT_COUNT}}</div></div>
+    <div class="meta-cell"><div class="meta-label">Duration</div><div class="meta-value">{{DURATION}}</div></div>
+    <div class="meta-cell"><div class="meta-label">Trainer</div><div class="meta-value">{{TRAINER_NAME}}</div></div>
+  </div>
+</header>
+
+<section>
+  <h2>Executive summary</h2>
+  <p>{{EXEC_SUMMARY_PARAGRAPH}}</p>
+  <div class="stat-row">
+    <div class="stat"><div class="stat-num">{{STAT_1_VALUE}}</div><div class="stat-lbl">{{STAT_1_LABEL}}</div></div>
+    <div class="stat"><div class="stat-num">{{STAT_2_VALUE}}</div><div class="stat-lbl">{{STAT_2_LABEL}}</div></div>
+    <div class="stat"><div class="stat-num">{{STAT_3_VALUE}}</div><div class="stat-lbl">{{STAT_3_LABEL}}</div></div>
+    <div class="stat"><div class="stat-num">{{STAT_4_VALUE}}</div><div class="stat-lbl">{{STAT_4_LABEL}}</div></div>
+  </div>
+  <div class="callout"><strong>Bottom line.</strong> {{BOTTOM_LINE_SENTENCE}}</div>
+</section>
+
+<section>
+  <h2>Participant satisfaction</h2>
+  <p>{{SURVEY_METHODOLOGY_PARAGRAPH}}</p>
+  <h3>Section averages</h3>
+  {{#each SECTION_AVERAGES}}
+  <div class="rating-bar"><div class="rating-label">{{LABEL}}</div><div class="bar-track"><div class="bar-fill" style="width: {{PERCENT}}%"></div></div><div class="rating-num">{{SCORE}}</div></div>
+  {{/each}}
+  <h3>Open-comment signal</h3>
+  <p>{{OPEN_COMMENT_PARAGRAPH}}</p>
+</section>
+
+<section>
+  <h2>Learning transfer: artifacts produced</h2>
+  <p>{{ARTIFACTS_INTRO_PARAGRAPH}}</p>
+
+  {{#each FUNCTIONS}}
+  <h3>{{FUNCTION_NAME}}</h3>
+  <div class="evidence-grid">
+    {{#each ARTIFACTS}}
+    <div class="card"><h4>{{TITLE}}</h4><p>{{DESCRIPTION}}</p><div class="byline">{{PARTICIPANT}}</div></div>
+    {{/each}}
+  </div>
+  {{/each}}
+</section>
+
+<section>
+  <h2>Skills mastered: tools in the stack</h2>
+  <table>
+    <thead><tr><th>Tool</th><th>What it was taught for</th><th>Evidence</th></tr></thead>
+    <tbody>
+      {{#each TOOLS}}
+      <tr><td><strong>{{NAME}}</strong></td><td>{{PURPOSE}}</td><td>{{EVIDENCE}}</td></tr>
+      {{/each}}
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Engagement: why the skills transferred</h2>
+  <div class="two-col">
+    <div>
+      <h3>{{ENGAGEMENT_1_TITLE}}</h3>
+      <p>{{ENGAGEMENT_1_BODY}}</p>
+      <h3>{{ENGAGEMENT_2_TITLE}}</h3>
+      <p>{{ENGAGEMENT_2_BODY}}</p>
+    </div>
+    <div>
+      <h3>{{ENGAGEMENT_3_TITLE}}</h3>
+      <p>{{ENGAGEMENT_3_BODY}}</p>
+      <h3>{{ENGAGEMENT_4_TITLE}}</h3>
+      <p>{{ENGAGEMENT_4_BODY}}</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Participant voice</h2>
+  <p>{{VOICE_INTRO_PARAGRAPH}}</p>
+  <div class="evidence-grid">
+    {{#each QUOTES}}
+    <div class="card"><p>"{{QUOTE}}"</p><div class="byline">{{ATTRIBUTION}}</div></div>
+    {{/each}}
+  </div>
+</section>
+
+<section>
+  <h2>Top 5 most active participants</h2>
+  <p>{{TOP5_INTRO_PARAGRAPH}}</p>
+  <table>
+    <thead><tr><th style="width: 50px;">Rank</th><th>Participant</th><th>Function</th><th>Artifacts built</th><th style="width: 90px;">Engagement</th></tr></thead>
+    <tbody>
+      {{#each TOP_5}}
+      <tr><td><strong>{{RANK}}</strong></td><td><strong>{{NAME}}</strong></td><td>{{FUNCTION}}</td><td>{{ARTIFACTS}}</td><td>{{ENGAGEMENT}}</td></tr>
+      {{/each}}
+    </tbody>
+  </table>
+  {{#if HONOURABLE_MENTIONS}}
+  <div class="callout"><strong>Honourable mentions.</strong> {{HONOURABLE_MENTIONS}}</div>
+  {{/if}}
+</section>
+
+<section>
+  <h2>Recommendations</h2>
+  <h3>Near-term (next 30 days)</h3>
+  <p>{{RECOMMENDATION_NEAR_TERM}}</p>
+  <h3>Medium-term (next 90 days)</h3>
+  <p>{{RECOMMENDATION_MEDIUM_TERM}}</p>
+  <h3>Strategic (next 6 months)</h3>
+  <p>{{RECOMMENDATION_STRATEGIC}}</p>
+</section>
+
+<footer class="doc-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="sig-name">{{TRAINER_NAME}}</div>
+      <div>{{TRAINER_TITLE}}</div>
+      <div>{{TRAINER_ORG}}</div>
+      <div>{{TRAINER_CREDENTIALS}}</div>
+    </div>
+    <div style="text-align: right;">
+      <div class="sig-name">Prepared {{REPORT_DATE}}</div>
+      <div>Artifacts on file: {{ARTIFACTS_ON_FILE}}</div>
+      <div>Report reference: {{REPORT_REF}}</div>
+    </div>
+  </div>
+</footer>
+
+</div>
+</body>
+</html>
