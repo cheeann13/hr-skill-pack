@@ -8,17 +8,20 @@ The report documents three categories of evidence:
 - **Kirkpatrick Level 2 (Learning)**: artifacts produced during the programme as evidence of cognitive skill acquisition across Bloom's taxonomy (Apply, Analyze, Create)
 - **Early Kirkpatrick Level 3 (Behaviour) indicators**: self-reported transfer intention, self-efficacy shift, peer-teaching patterns
 
-Output is a polished HTML report suitable for stakeholder review, HRDC-level documentation, and internal archival.
+Output is a polished report suitable for stakeholder review, HRDC-level documentation, and internal archival.
 
 ## What you will do
 
-Read the input files the user uploads, then produce the HTML report by filling in the provided `template.html`. If `template.html` is not uploaded, reproduce its structure from the specification at the end of this file.
+1. Ask the user once, at the start, which output format they want: **PDF** (default, suitable for HRDC documentation and email distribution) or **PPTX** (suitable for leadership presentation and workshop debrief). The user can ask for both.
+2. Read the input files the user uploads.
+3. Analyse and extract evidence across the three Kirkpatrick levels.
+4. Render the report in the requested format.
 
 ## Required inputs
 
 The user uploads any or all of:
 
-1. **Survey results**. CSV or Excel. HRDC Output Assessment form, Google Forms export, Lark Base export, Microsoft Forms export. You infer columns.
+1. **Survey results**. CSV or Excel. HRDC Output Assessment form, Google Forms export, Lark Base export, Microsoft Forms export. You infer columns. If the user has paper forms only, direct them to the `oa-form-scanner` skill first.
 2. **Collaboration board export**. Padlet PDF, Miro PNG, Mural export, Notion page, or screenshots. Source of artifact evidence and participant reflections.
 3. **Participant list**. CSV with name, department or function. Often embedded in the survey.
 4. **Training metadata**. YAML or plain text: client, training title, cohort label, dates, venue, duration, trainer name, trainer credentials.
@@ -91,12 +94,29 @@ Frame around sustaining Level 3 behavioural transfer, not selling additional ser
 - **Medium-term (90 days)**: curriculum progression. Move cohorts from Bloom's Remember and Understand toward Apply, Analyze, and Create. Introduce function-specific deep dives where artifact density was highest.
 - **Strategic (6 months)**: organisational capability-building rather than event-based training. Shift from "we ran a course" to "we have a behaviour system".
 
-### Step 5. Produce the HTML
+### Step 5. Render the output
 
-- Fill the template with extracted data.
-- Use the neutral default palette (navy and muted gold) unless metadata specifies brand colours.
-- Ensure print-safe: no text lighter than #444, `print-color-adjust: exact`.
-- Save as `{client-slug}-post-training-report-{YYYY-MM}.html`.
+Based on the format the user chose in Step 1:
+
+#### Option A: PDF output
+
+1. Fill `template.html` with the extracted data. Use the neutral default palette (navy and muted gold) unless metadata specifies brand colours.
+2. Ensure print-safe: no text lighter than #444, `print-color-adjust: exact`.
+3. Render the HTML to PDF using a headless browser (Chromium via Playwright or Puppeteer) or a Python library (WeasyPrint, pdfkit).
+4. A4 page size, 18mm margins, page breaks before each section.
+5. Save as `{client-slug}-post-training-report-{YYYY-MM}.pdf`.
+
+#### Option B: PPTX output
+
+1. Generate a 16:9 PowerPoint deck using `python-pptx` or equivalent.
+2. Follow the slide specification at the end of this document.
+3. Use the same navy and muted gold palette as the PDF version.
+4. Slide master: clean, professional, no stock imagery, no clip art.
+5. Save as `{client-slug}-post-training-report-{YYYY-MM}.pptx`.
+
+#### Option C: Both
+
+Produce both files sequentially. Return both paths to the user.
 
 ### Step 6. Final check
 
@@ -104,6 +124,8 @@ Frame around sustaining Level 3 behavioural transfer, not selling additional ser
 - No fabricated participants, quotes, or artifacts.
 - If data is thin (e.g. only 5 surveys returned), state this in the executive summary. Do not pad.
 - Response rate below 60%: call it out as a limitation. Above 80%: note it as a strong engagement indicator.
+- For PPTX: every slide fits without overflow. Shrink text or split to a second slide rather than clipping.
+- For PDF: no orphan headings, no split tables across pages.
 
 ## Tone guidelines
 
@@ -115,24 +137,38 @@ Frame around sustaining Level 3 behavioural transfer, not selling additional ser
 - **Reference adult learning frameworks by name where relevant.** This elevates the report above a satisfaction summary and signals methodological rigour to L&D leadership reading it.
 - **Acknowledge what the data does not show.** Level 4 (Results: business impact) is outside the scope of a post-training report. State this explicitly in the methodology note.
 
-## Output
+## PPTX slide specification
 
-A single print-ready HTML file, six to ten sections, suitable for stakeholder distribution as-is. The report should read as a professional evaluation document, not marketing collateral.
+16:9 aspect ratio (13.33 x 7.5 inches). Navy primary (#1e3a5f), muted gold accent (#b8860b), cream background for stat blocks (#f7f5f0), body text #222.
 
-## Template specification (if template.html is not provided)
+| Slide | Title | Content |
+|---|---|---|
+| 1 | Title slide | Client name, training title, cohort + dates + venue, "Prepared by {trainer}" |
+| 2 | Executive summary | 4-stat grid (response rate, average rating, completion rate, standout signal) + bottom-line callout |
+| 3 | Methodology | Framework note: "This evaluation uses Kirkpatrick's four levels (Level 1, 2, and early Level 3 indicators). Level 4 business impact requires a 3 to 6 month measurement window and is outside scope." |
+| 4 | Kirkpatrick Level 1: Reaction | Section averages as 3 horizontal bars + open-comment theme summary |
+| 5 | Kirkpatrick Level 2: Learning overview | Intro paragraph + counts (total artifacts, participants who produced, functions represented) |
+| 6 to 10 | Learning transfer by function | One slide per function. Function name as title. 4-8 artifact cards per slide (artifact title, description, participant byline, Bloom's tag) |
+| 11 | Skills mastered | Table: tool, purpose, evidence |
+| 12 | Engagement analysis | 4-quadrant layout with the four framework-grounded blocks (icebreaker, live modelling, peer recaps, participant-chosen topics) |
+| 13-14 | Participant voice (early Level 3) | 3-4 quote cards per slide with attribution |
+| 15 | Top 5 most active participants | Ranked list with artifacts built and peer engagement, plus honourable mentions line |
+| 16 | Recommendations | Three columns for near-term (30 days), medium-term (90 days), strategic (6 months) |
+| 17 | Scope and limitations | What this report does not show, acknowledging sample size, self-report bias, and Level 4 gap |
+| 18 | Thank you / Contact | Trainer name, credentials, organisation, prep date, report reference |
 
-Reproduce a single-page HTML with:
+Slides 6 to 10 are dynamic: one per business function present in the data. Adjust total slide count accordingly.
+
+## HTML template (intermediate, for PDF rendering)
+
+The `template.html` file in this folder is used as the intermediate render target for PDF output. It is not a primary deliverable. See its source for structure if you need to generate one from scratch:
 
 - `<head>`: A4 print CSS, system font stack, navy primary (#1e3a5f), muted gold accent (#b8860b), cream background for stat cards (#f7f5f0).
 - Header: eyebrow "POST-TRAINING REPORT", h1 title, subtitle (cohort, date, venue), 4-cell meta grid (client, participants, duration, trainer).
-- Section: Executive summary (narrative, 4-stat row, callout "Bottom line").
-- Section: Participant satisfaction, Kirkpatrick Level 1 (methodology note, 3-bar visual for section averages, open-comment analysis).
-- Section: Learning transfer, Kirkpatrick Level 2 (intro, then h3 per function with 2-column card grid showing artifact title, description, participant byline).
-- Section: Skills mastered (table of tools used with purpose and evidence).
-- Section: Engagement analysis (2-column layout with 4 h3 blocks framed in adult learning theory).
-- Section: Participant voice, early Level 3 indicators (6-8 quote cards with attribution).
-- Section: Top five most active participants (ranked table with artifacts built and peer engagement, plus honourable mentions callout).
-- Section: Recommendations (3 h3 blocks for near-term, medium-term, strategic).
+- Sections as listed in Step 4.
 - Footer: trainer name and credentials, prep date, report reference code.
+- Use `@page { size: A4; margin: 18mm }` and `break-inside: avoid` on sections for clean PDF export.
 
-Use `@page { size: A4; margin: 18mm }` and `break-inside: avoid` on sections for clean PDF export.
+## Output
+
+The requested deliverable (PDF, PPTX, or both). Ready for distribution as-is. The report should read as a professional evaluation document, not marketing collateral.

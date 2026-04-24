@@ -10,11 +10,21 @@ Originally developed for Vspire Academy's HR community session, April 2026. Publ
 
 | Skill | What it does | Status |
 |---|---|---|
-| [Post-Training Report](./post-training-report) | Generate Kirkpatrick-aligned HTML evaluation reports from survey and collaboration board data | Ready |
+| [OA Form Scanner](./oa-form-scanner) | Scan photos or PDFs of paper HRDC Output Assessment forms into a clean CSV or Excel. Feeds directly into Post-Training Report. | Ready |
+| [Post-Training Report](./post-training-report) | Generate Kirkpatrick-aligned evaluation reports (PDF or PPTX) from survey and collaboration board data | Ready |
 | Job Post Designer | Generate employer-branding images for targeted audiences (early-career vs senior) | Coming soon |
 | JD Writer | Draft job descriptions with bias-language audit | Coming soon |
 | CV Screen | Rank a folder of CVs against a JD with reasoning and audit trail | Coming soon |
 | Offer Letter Generator | Five role variants (full-time, contract, intern, senior, expat) | Coming soon |
+
+## Chaining skills
+
+Skills are designed to chain. The most common L&D workflow runs two of them back-to-back:
+
+1. **OA Form Scanner**: stack of paper OA forms → clean CSV
+2. **Post-Training Report**: that CSV + Padlet export + metadata → PDF or PPTX report
+
+Total time from paper forms to finished deliverable: under 15 minutes for a typical 20-to-30 participant cohort.
 
 ## Install on Manus (2 min)
 
@@ -42,10 +52,9 @@ Treating the AI as a disciplined executor of known evaluation methodology produc
 PRs welcome. Each skill folder contains:
 
 - `SKILL.md`: the instructions the agent follows
-- `template.html` or `template.md`: output template with `{{placeholders}}`
 - `inputs-checklist.md`: what the user prepares before running
-- `sample-inputs/`: a working example for testing
-- `example-output.html`: what the finished output looks like
+- `output-schema.md` or `template.html`: output specification
+- `sample-inputs/`: a working example for testing (where applicable)
 
 Keep skills under 200 lines of instructions. If a skill needs more, it probably needs to be two skills.
 
