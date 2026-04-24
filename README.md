@@ -1,6 +1,6 @@
 # HR Skill Pack
 
-Open-source AI skills for HR and L&D teams. Each skill is a plain-English instruction set you paste into [Manus](https://manus.im) or any agentic AI. Upload your data, the agent runs the workflow end-to-end. No code required.
+Open-source AI skills for HR and L&D teams. Each skill is a plain-English instruction set you paste into [Manus](https://manus.im/invitation/PGHZWAB6COYA6?utm_source=invitation&utm_medium=social&utm_campaign=copy_link) or any agentic AI. Upload your data, the agent runs the workflow end-to-end. No code required.
 
 Built by [Chee Ann](https://cheeann.com) at [Groove Consulting](https://grooveconsulting.org). MIT licensed.
 
@@ -18,7 +18,7 @@ Originally developed for Vspire Academy's HR community session, April 2026. Publ
 
 ## Install on Manus (2 min)
 
-1. Start a new session at [manus.im](https://manus.im)
+1. Start a new session at [manus.im](https://manus.im/invitation/PGHZWAB6COYA6?utm_source=invitation&utm_medium=social&utm_campaign=copy_link)
 2. Open the skill folder in this repo, e.g. `post-training-report/`
 3. Copy the contents of `SKILL.md`
 4. Paste it into Manus as your first message
